@@ -26,12 +26,12 @@ var article1 ={
                     this is content.
                 </p>`
 };
-function createtemplate(data)(
+function createtemplate(data) {
     var date= data.date;
     var title=data.title;
     var heading=data.heading;
     var content=data.content;
-    var htmltemplate =
+    var htmltemplate=
                         `<!DOCTYPE html>
                         <html>
                             <head>
@@ -56,7 +56,7 @@ function createtemplate(data)(
                         ;
 
         return htmltemplate;
-)
+}
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
