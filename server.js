@@ -5,11 +5,63 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+
+var article1 ={
+    title: 'Article 1.',
+    heading: 'Article 1',
+    date: 'August 4,2017',
+    content: `<p>
+                    this is content.
+                </p>
+            
+                <p>
+                    this is content.
+                </p>
+           
+                <p>
+                    this is content.
+                </p>
+            
+                <p>
+                    this is content.
+                </p>`
+};
+function createtemplate(data)(
+    var date= data.date;
+    var title=data.title;
+    var heading=data.heading;
+    var content=data.content;
+    var htmltemplate =
+                        `<!DOCTYPE html>
+                        <html>
+                            <head>
+                                <title>
+                                    ${title}
+                                </title>
+                        <link href="/ui/style.css" rel="stylesheet" />
+                            </head>
+                            <body>
+                                <div class="container">
+                                    <div>
+                                        <h3> ${heading}</h3>
+                                    </div>
+                                    <div> <h3> ${date}</h3>
+                                    </div>
+                                    <div>
+                                        ${content}
+                                    </div>
+                                </div>
+                            </body>
+                        </html>`
+                        ;
+
+        return htmltemplate;
+)
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 app.get('/articleone', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+  res.send(createtemplate(article1));
 });
 app.get('/article2', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'article2.html'));
